@@ -1,12 +1,17 @@
 <script setup>
-import { RouterView } from 'vue-router'
-import PageHeader from '@/components/PageHeader.vue'
-
+import { RouterLink} from 'vue-router'
 </script>
 
 <template>
-  <PageHeader />
-  <RouterView />
+  <header>
+    <div class="wrapper">
+      <p>Vue 3 CRUD app</p>
+      <nav>
+        <RouterLink active-class="active" to="/posts">Посты</RouterLink>  
+        <RouterLink active-class="active" to="/todos">Задачи</RouterLink> 
+      </nav>
+    </div>
+  </header>
 </template>
 
 <style lang="scss"  scoped>
