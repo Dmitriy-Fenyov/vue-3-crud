@@ -9,7 +9,7 @@ import PageHeader from '@/components/PageHeader.vue'
   <RouterView />
 </template>
 
-<style lang="scss"  scoped>
+<style lang="scss" scoped>
 header {
   margin-bottom: 50px;
   box-shadow: 0px 2px 15px 0px #64646F33;
