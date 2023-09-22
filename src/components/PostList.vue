@@ -53,6 +53,7 @@ export default {
   grid-template-columns: 1fr 1fr;
   grid-column-gap: 20px;  
   grid-row-gap: 20px;
+
 }
 .post {
   position: relative;

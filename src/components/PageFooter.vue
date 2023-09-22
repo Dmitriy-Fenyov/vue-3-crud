@@ -13,6 +13,10 @@
 <style lang="scss" scoped>
 
   footer {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
     margin-top: 50px;
     box-shadow: 0px 2px 15px 0px #64646F33;
   }
@@ -25,6 +29,7 @@
   }
   p {
     text-align: center;
+    margin: 0;
     padding-top: 15px;
   }
 </style>
