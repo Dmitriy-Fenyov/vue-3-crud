@@ -1,7 +1,7 @@
 <template>
   <div class="item">
     <h2>Получение списка всех постов</h2>
-    <div class="wrapper">
+    <div class="wrapper" v-if="load=false">
       <el-skeleton class="post" />
       <el-skeleton class="post" />
       <el-skeleton class="post" />
@@ -32,6 +32,7 @@ export default {
       posts: [],
       page: 1,
       limit: 4,
+      load: false
     }
   },
   methods: {
@@ -41,6 +42,7 @@ export default {
     },
     async fetchPosts() {
       try {
+        this.load= true
         const response = await axios.get('https://jsonplaceholder.typicode.com/posts', {
           params: {
             _page: this.page,
@@ -48,6 +50,7 @@ export default {
           }
         } )
         this.posts = response.data
+        
       } catch (e) {
         alert('Erorr')
       } 
