@@ -14,7 +14,13 @@
         <div class="positionId">post id:{{ post.id }}</div>
       </div>
     </div>
-    <el-button class="button" type="primary">Загрузить страницу 2</el-button>
+    <el-button 
+      class="button" 
+      type="primary" 
+      @click="changePage(page)"
+    >
+      Загрузить страницу {{ page +1 }}
+    </el-button>
   </div>
 </template>
 
@@ -23,13 +29,24 @@ import axios from "axios"
 export default {
   data() {
     return {
-      posts: []
+      posts: [],
+      page: 1,
+      limit: 4,
     }
   },
   methods: {
+    changePage(page) {
+      this.page = page+1
+      this.fetchPosts()
+    },
     async fetchPosts() {
       try {
-        const response = await axios.get('https://jsonplaceholder.typicode.com/posts?_limit=4')
+        const response = await axios.get('https://jsonplaceholder.typicode.com/posts', {
+          params: {
+            _page: this.page,
+            _limit: this.limit
+          }
+        } )
         this.posts = response.data
       } catch (e) {
         alert('Erorr')
@@ -53,6 +70,11 @@ export default {
   grid-template-columns: 1fr 1fr;
   grid-column-gap: 20px;  
   grid-row-gap: 20px;
+  .post:hover {
+    color: black;
+    border: 2px solid black;
+    box-shadow: 0px 2px 8px 0px #63636333;
+  }
 
 }
 .post {
