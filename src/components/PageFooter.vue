@@ -13,10 +13,7 @@
 <style lang="scss" scoped>
 
   footer {
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 100%;
+    flex-shrink: 0;
     margin-top: 50px;
     box-shadow: 0px 2px 15px 0px #64646F33;
   }

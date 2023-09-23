@@ -1,12 +1,43 @@
 <template>
   <div class="item">
     <h2> Детальная страница поста № {{ $route.params.id }}</h2>
-    <p>Title:</p>
-    <p>Body:</p>
-    <p>post id:</p>
+    <div><strong>{{ post.title }}</strong></div> 
+    <div>{{ post.body }}</div>
+    <div class="positionId">post id:{{ post.id }}</div>
   </div>
 </template>
 
+<script>
+import axios from "axios"
+export default {
+  data() {
+    return {
+      post: [],
+      load: false
+    }
+  },
+  methods: {
+    async fetchPosts() {
+      try {
+        this.load= false
+        const response = await axios.get('https://jsonplaceholder.typicode.com/posts/1', {
+          params: {
+            _id: this.post.id,
+          }
+        } )
+        this.post = response.data
+        this.load= true
+        
+      } catch (e) {
+        alert('Erorr')
+      } 
+    }
+  },
+  mounted() {
+    this.fetchPosts()
+  }
+}
+</script>
 
 <style lang="scss" scoped>
 
@@ -24,7 +55,6 @@
     border: 2px solid black;
     box-shadow: 0px 2px 8px 0px #63636333;
   }
-
 }
 .post {
   position: relative;
@@ -35,9 +65,8 @@
   padding: 17px;
 }
 .positionId {
-  position: absolute;
-  bottom: 17px;
-  right: 20px;
+  text-align: end;
+  margin-right: 15px;
 }
 .button {
   display: block;

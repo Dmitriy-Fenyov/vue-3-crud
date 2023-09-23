@@ -1,25 +1,30 @@
 <template>
   <div class="item">
     <h2>Получение списка всех постов</h2>
-    <div class="wrapper" v-if="load=false">
+    <div class="wrapper" v-if="load===false"> 
       <el-skeleton class="post" />
       <el-skeleton class="post" />
       <el-skeleton class="post" />
       <el-skeleton class="post" />
     </div>
     <div class="wrapper">
-      <div class="post" v-for="post in posts">
-        <div><strong>{{ post.title }}</strong></div>
+      <RouterLink 
+        :to="'/posts/' + post.id"
+        class="post" 
+        v-for="post in posts" 
+        :key="post.id"
+      >
+        <div><strong>{{ post.title }}</strong></div> 
         <div>{{ post.body }}</div>
         <div class="positionId">post id:{{ post.id }}</div>
-      </div>
+      </RouterLink>
     </div>
     <el-button 
       class="button" 
       type="primary" 
-      @click="changePage(page)"
+      @click="changePage(page,limit)"
     >
-      Загрузить страницу {{ page +1 }}
+      Загрузить ещё
     </el-button>
   </div>
 </template>
@@ -36,13 +41,10 @@ export default {
     }
   },
   methods: {
-    changePage(page) {
-      this.page = page+1
-      this.fetchPosts()
-    },
+    
     async fetchPosts() {
       try {
-        this.load= true
+        this.load= false
         const response = await axios.get('https://jsonplaceholder.typicode.com/posts', {
           params: {
             _page: this.page,
@@ -50,12 +52,29 @@ export default {
           }
         } )
         this.posts = response.data
+        this.load= true
         
       } catch (e) {
         alert('Erorr')
       } 
-    }
-  },
+    },
+    async changePage() {
+      try {
+                this.page +=1
+                const response = await axios.get('https://jsonplaceholder.typicode.com/posts',
+                    { params: {
+                        _page: this.page,
+                        _limit: this.limit
+                    }
+            })
+                this.posts = [...this.posts, ...response.data]
+            } 
+            catch (e) {
+                alert('ошибка')
+            } 
+        }
+    },
+  
   mounted() {
     this.fetchPosts()
   }
@@ -87,6 +106,7 @@ export default {
   height: 186px;
   border: 2px solid #AAAAAA;
   padding: 17px;
+  color: black;
 }
 .positionId {
   position: absolute;
