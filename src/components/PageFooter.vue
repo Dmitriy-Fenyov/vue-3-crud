@@ -14,7 +14,7 @@
 
   footer {
     flex-shrink: 0;
-    margin-top: 50px;
+    margin-top: 150px;
     box-shadow: 0px 2px 15px 0px #64646F33;
   }
   .wrapper-footer {

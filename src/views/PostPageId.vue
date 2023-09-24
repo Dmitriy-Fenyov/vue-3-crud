@@ -3,5 +3,5 @@
 </template>
 
 <script setup>
-import PostPageId from '../components/PostPageId.vue'
+import PostPageId from '@/components/PostPageId.vue'
 </script>

@@ -1,8 +1,9 @@
 <template>
   <div class="item">
-    <h2> Детальная страница поста № {{ $route.params.id }}</h2>
-    <div><strong>{{ post.title }}</strong></div> 
-    <div>{{ post.body }}</div>
+    <h2 class="postPageId-title"> Детальная страница поста № {{ $route.params.id }}</h2>
+    <el-skeleton v-if="load===false" />
+    <div class="postPageId-postTitle"><strong>{{ post.title }}</strong></div> 
+    <div class="postPageId-postBody">{{ post.body }}</div>
     <div class="positionId">post id:{{ post.id }}</div>
   </div>
 </template>
@@ -45,28 +46,30 @@ export default {
   width: 1000px;
   margin: 0 auto;
 }
-.wrapper {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-column-gap: 20px;  
-  grid-row-gap: 20px;
-  .post:hover {
-    color: black;
-    border: 2px solid black;
-    box-shadow: 0px 2px 8px 0px #63636333;
-  }
+.postPageId-title {
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 36px;
 }
-.post {
-  position: relative;
-  box-sizing: border-box;
-  width: 490px;
-  height: 186px;
-  border: 2px solid #AAAAAA;
-  padding: 17px;
+.postPageId-postTitle{
+  font-size: 21px;
+  font-weight: 700;
+  line-height: 26px;
+}
+.postPageId-postBody{
+  margin-top: 15px;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 24px;
 }
 .positionId {
   text-align: end;
   margin-right: 15px;
+  margin-top: 15px;
+  font-family: Arial;
+  font-size: 16px;
+  line-height: 18px;
+
 }
 .button {
   display: block;
