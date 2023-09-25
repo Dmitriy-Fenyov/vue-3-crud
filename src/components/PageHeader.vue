@@ -38,6 +38,7 @@ nav {
   
   a {
     text-decoration: none;
+    color: black;
   }
   .active{
     color:#00008B;
