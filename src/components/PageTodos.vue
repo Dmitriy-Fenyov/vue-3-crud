@@ -29,12 +29,16 @@
         v-for="todo in todos" 
         :key="todo.id"
       >
-        <div><strong>{{ todo.title }}</strong></div>
-        <ElCheckbox /> 
-        <RouterLink class="as" :to="'/todos/' + todo.id">
-          Редактировать
-        </RouterLink>
-        <el-button type="danger">Удалить</el-button>
+        <div class="wrapper-flexbox">
+          <div class="todoList-title"><strong>{{ todo.title }}</strong></div>
+          <ElCheckbox class="mrgn-left" />
+        </div>  
+        <div class="wrapper-flexbox">   
+          <RouterLink class="as" :to="'/todos/' + todo.id">
+            Редактировать
+          </RouterLink>
+          <el-button type="danger">Удалить</el-button>
+        </div>    
       </div>
     </div>
   </div>
@@ -79,8 +83,7 @@ export default {
 <style lang="scss" scoped>
 .wrapper-todos {
   width: 500px;
-  text-align: center;
-  display: block;
+  vertical-align: center;
   margin: 20px auto 0;
 }
 .wrapper-todos-btn {
@@ -106,21 +109,40 @@ export default {
   }
 }
 .todoList {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  position: relative;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
   box-sizing: border-box;
-  width: 490px;
-  height: 186px;
+  width: 500px;
+  height: 116px;
   border: 2px solid #AAAAAA;
-  padding: 17px;
+  padding: 15px;
   color: black;
-  
+}
+.wrapper-flexbox {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.todoList-title {
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 22px;
+  letter-spacing: 0em;
+  text-align: left;
+
 }
 .as {
-    text-decoration: none;
-    color: black;
+  text-decoration: none;
+  color: black;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 18px;
+  letter-spacing: 0em;
   }
-
+.mrgn-left {
+  width: 38px;
+  height: 38px;
+}
 
 </style>
