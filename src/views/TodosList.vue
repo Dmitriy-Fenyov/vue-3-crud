@@ -2,11 +2,13 @@
   <div class="todos">
     <h1 class="todos-title">CRUD задачи {{ todos.title }}</h1>
     <PageTodos />
+    <DeleteTodoPopup v-if="2>1" />
   </div>
 </template>
 
 <script setup>
 import PageTodos from '@/components/PageTodos.vue'
+import DeleteTodoPopup from '@/components/DeleteTodoPopup.vue'
 import {usetodosMockStore} from '@/stores/todosMockStore'
 const todos = usetodosMockStore()
 </script>

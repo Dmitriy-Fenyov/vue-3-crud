@@ -13,6 +13,7 @@
         class="post" 
         v-for="post in posts" 
         :key="post.id"
+        :posts="posts"
       >
         <div><strong>{{ post.title }}</strong></div> 
         <div>{{ post.body }}</div>
@@ -119,6 +120,4 @@ export default {
   width: 171px;
   height: 40px;
 }
-
-
 </style>

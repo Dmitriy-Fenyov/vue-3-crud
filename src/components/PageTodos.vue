@@ -28,6 +28,7 @@
         class="todoList" 
         v-for="todo in todos" 
         :key="todo.id"
+        :title="1"
       >
         <div class="wrapper-flexbox">
           <div class="todoList-title"><strong>{{ todo.title }}</strong></div>
