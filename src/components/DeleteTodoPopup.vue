@@ -1,10 +1,12 @@
 <script setup>
-defineProps(['title'])
+import {usetodosMockStore} from '@/stores/todosMockStore'
+const mock = usetodosMockStore()
+const {todos} = mock
 </script>
 
 <template>
   <div class="popup">
-    <p>Удалить задачу {{ title }} </p>
+    <p>Удалить задачу {{ todos[1].title }} </p>
   </div>
 </template>
 

@@ -28,11 +28,17 @@
         class="todoList" 
         v-for="todo in todos" 
         :key="todo.id"
-        :title="1"
+        :todo="todo"
       >
         <div class="wrapper-flexbox">
           <div class="todoList-title"><strong>{{ todo.title }}</strong></div>
-          <ElCheckbox class="mrgn-left" />
+          <el-button 
+            type="warning" 
+            :icon="Star"
+            plain 
+            circle 
+            class="mrgn-left"
+          />
         </div>  
         <div class="wrapper-flexbox">   
           <RouterLink class="as" :to="'/todos/' + todo.id">
@@ -45,39 +51,11 @@
   </div>
 </template>
 
-<script>
-export default {
-  data() {
-    return {
-      todos:[
-      {
-        id: 4,
-        title: 'Проверить почту',
-        isDone: false,
-        isFavorite: false,
-      },
-      {
-        id: 3,
-        title: 'Сделать кофе',
-        isDone: true,
-        isFavorite: true,
-      },
-      {
-        id: 2,
-        title: 'Почистить зубы',
-        isDone: true,
-        isFavorite: false,
-      },
-      {
-        id: 1,
-        title: 'Проснуться',
-        isDone: true,
-        isFavorite: false,
-      },
-    ]
-    }
-  }
-}
+<script setup>
+import { Star } from '@element-plus/icons-vue'
+import {usetodosMockStore} from '@/stores/todosMockStore'
+const mock = usetodosMockStore()
+const {todos} = mock
 </script>
 
 

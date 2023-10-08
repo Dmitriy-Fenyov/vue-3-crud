@@ -21,11 +21,7 @@ export default {
     async fetchPosts() {
       try {
         this.load= false
-        const response = await axios.get('https://jsonplaceholder.typicode.com/posts/1', {
-          params: {
-            _id: this.post.id,
-          }
-        } )
+        const response = await axios.get(`https://jsonplaceholder.typicode.com/posts/` +  this.$route.params.id  )
         this.post = response.data
         this.load= true
         
