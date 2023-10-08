@@ -44,7 +44,7 @@
           <RouterLink class="as" :to="'/todos/' + todo.id">
             Редактировать
           </RouterLink>
-          <el-button type="danger">Удалить</el-button>
+          <DeleteTodoPopup />
         </div>    
       </div>
     </div>
@@ -53,6 +53,7 @@
 
 <script setup>
 import { Star } from '@element-plus/icons-vue'
+import DeleteTodoPopup from '@/components/DeleteTodoPopup.vue'
 import {usetodosMockStore} from '@/stores/todosMockStore'
 const mock = usetodosMockStore()
 const {todos} = mock

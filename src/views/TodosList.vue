@@ -2,13 +2,11 @@
   <div class="todos">
     <h1 class="todos-title">CRUD задачи</h1>
     <PageTodos />
-    <DeleteTodoPopup v-if="2>1" />
   </div>
 </template>
 
 <script setup>
 import PageTodos from '@/components/PageTodos.vue'
-import DeleteTodoPopup from '@/components/DeleteTodoPopup.vue'
 </script>
 
 <style lang="scss" scoped>
