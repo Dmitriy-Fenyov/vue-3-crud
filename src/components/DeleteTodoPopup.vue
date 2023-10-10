@@ -1,8 +1,7 @@
 <script setup>
-import {usetodosMockStore} from '@/stores/todosMockStore'
-const mock = usetodosMockStore()
-const {todos} = mock
 import { ref } from 'vue'
+defineProps(['title'])
+
 
 const dialogVisible = ref(false)
 </script>
@@ -20,12 +19,12 @@ const dialogVisible = ref(false)
     width="30%"
     draggable
   >
-    <span> Удалить задачу "{{ todos[1].title }}"?</span>
+    <span> Удалить задачу "{{ title }}"?</span>
     <template #footer>
       <span class="dialog-footer">
         <el-button 
           type="dander" 
-          @click="dialogVisible = false" 
+          @click="dialogVisible = false, $emit('deleteTodo', todo)"
           style="background-color: #f56c6c; color: aliceblue;"
         >
           Удалить

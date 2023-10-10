@@ -29,6 +29,7 @@
         v-for="todo in todos" 
         :key="todo.id"
         :todo="todo"
+        @remove="deleteTodo"
       >
         <div class="wrapper-flexbox">
           <div class="todoList-title"><strong>{{ todo.title }}</strong></div>
@@ -44,7 +45,7 @@
           <RouterLink class="as" :to="'/todos/' + todo.id">
             Редактировать
           </RouterLink>
-          <DeleteTodoPopup />
+          <DeleteTodoPopup :title="todo.title" />
         </div>    
       </div>
     </div>
@@ -57,6 +58,10 @@ import DeleteTodoPopup from '@/components/DeleteTodoPopup.vue'
 import {usetodosMockStore} from '@/stores/todosMockStore'
 const mock = usetodosMockStore()
 const {todos} = mock
+console.log(todos)
+const deleteTodo = (todo) => {
+  this.todos = this.todos.filter(t => t.id !==todo.id)
+}
 </script>
 
 
