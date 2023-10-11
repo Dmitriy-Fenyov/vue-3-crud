@@ -25,7 +25,7 @@ const dialogVisible = ref(false)
       <span class="dialog-footer">
         <el-button 
           type="dander" 
-          @click="dialogVisible = false, () => remove.deleteTodo(id)"
+          @click="() => { dialogVisible = false; remove.deleteTodo(id)}"
           style="background-color: #f56c6c; color: aliceblue;"
         >
           Удалить

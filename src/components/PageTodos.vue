@@ -58,8 +58,10 @@
 import { Star } from '@element-plus/icons-vue'
 import DeleteTodoPopup from '@/components/DeleteTodoPopup.vue'
 import {usetodosMockStore} from '@/stores/todosMockStore'
+import { storeToRefs } from 'pinia'
+
 const mock = usetodosMockStore()
-const {todos} = mock
+const {todos} = storeToRefs(mock)
 </script>
 
 
