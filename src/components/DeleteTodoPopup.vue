@@ -1,7 +1,10 @@
 <script setup>
 import { ref } from 'vue'
 defineProps(['title'])
-
+import {usetodosMockStore} from '@/stores/todosMockStore'
+const remove = usetodosMockStore()
+remove.deleteTodo()
+console.log(remove.deleteTodo())
 
 const dialogVisible = ref(false)
 </script>
@@ -24,7 +27,7 @@ const dialogVisible = ref(false)
       <span class="dialog-footer">
         <el-button 
           type="dander" 
-          @click="dialogVisible = false, $emit('deleteTodo', todo)"
+          @click="remove.deleteTodo()"
           style="background-color: #f56c6c; color: aliceblue;"
         >
           Удалить

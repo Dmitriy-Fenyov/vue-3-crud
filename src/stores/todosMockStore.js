@@ -28,5 +28,15 @@ export const usetodosMockStore = defineStore('todosMockStore', {
         isFavorite: false,
       },
     ]
-  })
+  }),
+  actions: {
+    async deleteTodo(todo) {
+      try {
+        this.todos = this.todos.filter(t => t.id !==todo.id)
+      }
+      catch(error) {
+        console.log(error)
+      }
+    }
+  },
 })
