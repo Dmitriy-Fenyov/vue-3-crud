@@ -44,7 +44,10 @@
           <RouterLink class="as" :to="'/todos/' + todo.id">
             Редактировать
           </RouterLink>
-          <DeleteTodoPopup :title="todo.title" />
+          <DeleteTodoPopup 
+            :title="todo.title" 
+            :id="todo.id"
+          />
         </div>    
       </div>
     </div>

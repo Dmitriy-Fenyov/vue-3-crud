@@ -1,10 +1,8 @@
 <script setup>
 import { ref } from 'vue'
-defineProps(['title'])
+defineProps(['title', 'id'])
 import {usetodosMockStore} from '@/stores/todosMockStore'
 const remove = usetodosMockStore()
-remove.deleteTodo()
-console.log(remove.deleteTodo())
 
 const dialogVisible = ref(false)
 </script>
@@ -22,12 +20,12 @@ const dialogVisible = ref(false)
     width="30%"
     draggable
   >
-    <span> Удалить задачу "{{ title }}"?</span>
+    <span> Удалить задачу {{ id }} "{{ title }}"?</span>
     <template #footer>
       <span class="dialog-footer">
         <el-button 
           type="dander" 
-          @click="remove.deleteTodo()"
+          @click="dialogVisible = false, () => remove.deleteTodo(id)"
           style="background-color: #f56c6c; color: aliceblue;"
         >
           Удалить

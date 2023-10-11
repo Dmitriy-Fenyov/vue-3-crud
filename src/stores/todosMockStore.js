@@ -30,9 +30,9 @@ export const usetodosMockStore = defineStore('todosMockStore', {
     ]
   }),
   actions: {
-    async deleteTodo(todo) {
+    async deleteTodo(id) {
       try {
-        this.todos = this.todos.filter(t => t.id !==todo.id)
+        this.todos = this.todos.filter(t => t.id !==id)
       }
       catch(error) {
         console.log(error)
