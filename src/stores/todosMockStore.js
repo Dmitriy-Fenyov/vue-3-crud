@@ -33,5 +33,14 @@ export const usetodosMockStore = defineStore('todosMockStore', {
     deleteTodo(id) {
         this.todos = this.todos.filter(t => t.id !==id)
     },
+    createTodo(title,isFavorite) {
+      const newTodo = {
+        id: Date.now(),
+        title: title,
+        isDone: false,
+        isFavorite: isFavorite,
+      }
+      this.todos.push(newTodo)
+  },
   }
 })
