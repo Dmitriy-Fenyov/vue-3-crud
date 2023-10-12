@@ -15,13 +15,9 @@
       >
         Избранное
       </el-button>
-      <el-button 
-        class="button" 
-        type="primary" 
-        style="margin-right: 0px;"
-      >
+      <AddTodoPopup> 
         Добавить задачу
-      </el-button>
+      </AddTodoPopup>
     </div>
     <div class="wrapper">
       <div 
@@ -57,6 +53,7 @@
 <script setup>
 import { Star } from '@element-plus/icons-vue'
 import DeleteTodoPopup from '@/components/DeleteTodoPopup.vue'
+import AddTodoPopup from '@/components/AddTodoPopup.vue'
 import {usetodosMockStore} from '@/stores/todosMockStore'
 import { storeToRefs } from 'pinia'
 
