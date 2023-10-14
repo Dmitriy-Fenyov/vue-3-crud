@@ -20,11 +20,12 @@
       </AddTodoPopup>
     </div>
     <div class="wrapper">
-      <div 
-        class="todoList" 
+      <div  
+        class="todoList"
         v-for="todo in todos" 
         :key="todo.id"
         :todo="todo"
+        :class="[{ active: todo.isDone}, todoList]"
       >
         <div class="wrapper-flexbox">
           <div class="todoList-title"><strong>{{ todo.title }}</strong></div>
@@ -33,11 +34,16 @@
             :icon="Star"
             plain 
             circle 
-            class="mrgn-left"
+            class="mrgn-left" 
           />
         </div>  
         <div class="wrapper-flexbox">   
-          <RouterLink class="as" :to="'/todos/' + todo.id">
+          <RouterLink 
+            class="as" 
+            :to="'/todos/' + todo.id"
+            :id="todo.id"
+            :title="todo.title"
+          >
             Редактировать
           </RouterLink>
           <DeleteTodoPopup 
@@ -56,7 +62,6 @@ import DeleteTodoPopup from '@/components/DeleteTodoPopup.vue'
 import AddTodoPopup from '@/components/AddTodoPopup.vue'
 import {usetodosMockStore} from '@/stores/todosMockStore'
 import { storeToRefs } from 'pinia'
-
 const mock = usetodosMockStore()
 const {todos} = storeToRefs(mock)
 </script>
@@ -76,6 +81,7 @@ const {todos} = storeToRefs(mock)
   margin: 20px auto 0;
   width: 125px;
   height: 40px;
+  
 }
 .wrapper {
   width: 500px;
@@ -126,5 +132,17 @@ const {todos} = storeToRefs(mock)
   width: 38px;
   height: 38px;
 }
+
+.active {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 500px;
+  height: 116px;
+  padding: 15px;
+  color: #90EE90;
+  border: 2px solid #90EE90;
+  }
 
 </style>

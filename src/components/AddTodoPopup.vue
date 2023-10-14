@@ -37,7 +37,7 @@ const isFavorite = ref('')
     </el-form>
     <template #footer>
       <span class="dialog-footer">
-        <el-button type="primary" @click="() => { dialogFormVisible = false; create.createTodo(title,isFavorite)}">
+        <el-button type="primary" @click="() => { dialogFormVisible = false; create.createTodo(title,isFavorite); title=''; isFavorite=''}">
           Создать
         </el-button>
         <el-button @click="dialogFormVisible = false">Отмена</el-button>
@@ -46,7 +46,7 @@ const isFavorite = ref('')
   </el-dialog>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
 .el-button--text {
   margin-right: 15px;
 }
@@ -65,5 +65,13 @@ const isFavorite = ref('')
   width: 125px;
   height: 40px;
   border: 1px solid #dedfe0;
+  background-color: #409EFF;
+  color: white;
+  :hover {
+    background-color: #a0cfff;
+  }
+  :active {
+    background-color: #337ecc;
+  }
 }
 </style>
