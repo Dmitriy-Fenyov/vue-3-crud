@@ -24,14 +24,22 @@
         class="todoList"
         v-for="todo in todos" 
         :key="todo.id"
-        :todo="todo"
         :class="[{ active: todo.isDone}, todoList]"
       >
         <div class="wrapper-flexbox">
           <div class="todoList-title"><strong>{{ todo.title }}</strong></div>
           <el-button 
+            v-if="!todo.isFavorite"
             type="warning" 
             :icon="Star"
+            plain 
+            circle 
+            class="mrgn-left" 
+          />
+          <el-button
+            v-else 
+            type="warning" 
+            :icon="StarFilled"
             plain 
             circle 
             class="mrgn-left" 
@@ -57,7 +65,7 @@
 </template>
 
 <script setup>
-import { Star } from '@element-plus/icons-vue'
+import { Star, StarFilled } from '@element-plus/icons-vue'
 import DeleteTodoPopup from '@/components/DeleteTodoPopup.vue'
 import AddTodoPopup from '@/components/AddTodoPopup.vue'
 import {usetodosMockStore} from '@/stores/todosMockStore'
