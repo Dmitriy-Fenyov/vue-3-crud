@@ -30,6 +30,7 @@
           <div class="todoList-title"><strong>{{ todo.title }}</strong></div>
           <el-button 
             v-if="!todo.isFavorite"
+            @click="mock.favorite(todo.isFavorite)"
             type="warning" 
             :icon="Star"
             plain 
@@ -37,7 +38,8 @@
             class="mrgn-left" 
           />
           <el-button
-            v-else 
+            v-else
+            @click="mock.favorite(todo.isFavorite)" 
             type="warning" 
             :icon="StarFilled"
             plain 

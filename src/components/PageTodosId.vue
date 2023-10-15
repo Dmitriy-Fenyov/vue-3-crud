@@ -3,8 +3,7 @@ import {usetodosMockStore} from '@/stores/todosMockStore'
 import { storeToRefs } from 'pinia'
 const mock = usetodosMockStore()
 const {todos} = storeToRefs(mock)
-import { ref } from 'vue'
-const input = ref('')
+const input = todos
 </script>
 
 <template>

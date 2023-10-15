@@ -34,6 +34,7 @@ export const usetodosMockStore = defineStore('todosMockStore', {
         this.todos = this.todos.filter(t => t.id !==id)
     },
     createTodo(title,isFavorite) {
+
       const newTodo = {
         id: Date.now(),
         title: title,
@@ -42,5 +43,14 @@ export const usetodosMockStore = defineStore('todosMockStore', {
       }
       this.todos.push(newTodo)
   },
+  favorite(isFavorite) {
+    if(isFavorite) {
+      this.todo.isFavorite=false
+      console.log(isFavorite)
+    }
+    else this.todo.isFavorite=true
+    console.log(isFavorite)
+
+},
   }
 })

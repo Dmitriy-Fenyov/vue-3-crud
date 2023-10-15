@@ -1,10 +1,30 @@
 <script setup>
-import { ref } from 'vue'
+import { reactive, ref } from 'vue'
 import {usetodosMockStore} from '@/stores/todosMockStore'
 const create = usetodosMockStore()
 const dialogFormVisible = ref(false)
 const title = ref('')
 const isFavorite = ref('')
+const ValidateForm = reactive({
+  title: '',
+})
+const formRef = ref()
+const rules = reactive({
+  title: [
+    { required: true, message: 'Please input title', trigger: 'blur' },
+    { min: 1, message: 'Название не должно быть пустым', trigger: 'blur' },
+  ]})
+const submitForm = async (formEl) => {
+  if (!formEl) return
+  await formEl.validate((valid) => {
+    if (valid) {
+      console.log('submit!')
+    } else {
+      console.log('error submit!')
+      return false
+    }
+  })
+}
 </script>
 
 <template>
@@ -23,10 +43,16 @@ const isFavorite = ref('')
     style="width: 600px;"
     title="Создать задачу"
   >
-    <el-form>
-      <el-form-item>
+    <el-form
+      :rules="rules" 
+      ref="formRef"
+      :model="ValidateForm"
+    >
+      <el-form-item
+        prop="title"
+      >
         <el-input
-          v-model="title"
+          v-model="ValidateForm.title"
           placeholder="Название задачи"
           autocomplete="off"
         />
@@ -37,7 +63,7 @@ const isFavorite = ref('')
     </el-form>
     <template #footer>
       <span class="dialog-footer">
-        <el-button type="primary" @click="() => { dialogFormVisible = false; create.createTodo(title,isFavorite); title=''; isFavorite=''}">
+        <el-button type="primary" @click="() => {submitForm(formRef); create.createTodo(title,isFavorite); title=''; isFavorite=''}">
           Создать
         </el-button>
         <el-button @click="dialogFormVisible = false">Отмена</el-button>
