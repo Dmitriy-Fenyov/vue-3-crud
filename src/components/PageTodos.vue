@@ -5,6 +5,7 @@
         class="button" 
         type="default" 
         style="margin-left: 0px;"
+        @click="() => {sortIsDone.SortTodosIsDone(todos)}"
       >
         Выполнено
       </el-button>
@@ -12,6 +13,7 @@
         class="button" 
         type="default"
         style="margin-left: 0px; margin-right: 100px;"
+        @click="() => {sortIsFavorite.SortTodosisFavorite(todos)}"
       >
         Избранное
       </el-button>
@@ -44,7 +46,7 @@
             :icon="StarFilled"
             plain 
             circle 
-            class="mrgn-left" 
+            class="mrgn-left"
           />
         </div>  
         <div class="wrapper-flexbox">   
@@ -74,6 +76,8 @@ import {usetodosMockStore} from '@/stores/todosMockStore'
 import { storeToRefs } from 'pinia'
 const mock = usetodosMockStore()
 const {todos} = storeToRefs(mock)
+const sortIsDone = usetodosMockStore()
+const sortIsFavorite = usetodosMockStore()
 </script>
 
 

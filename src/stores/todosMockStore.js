@@ -52,5 +52,15 @@ export const usetodosMockStore = defineStore('todosMockStore', {
     console.log(isFavorite)
 
 },
+  SortTodosIsDone(todos) {
+    this.todos = todos.filter(function (todo) {    
+      return todo.isDone === true
+    })
+  },
+  SortTodosisFavorite(todos) {
+    this.todos = todos.filter(function (todo) {    
+      return todo.isFavorite === true
+    })
+  },
   }
 })
