@@ -1,14 +1,20 @@
 import { defineStore } from 'pinia'
-
+import { storeToRefs } from 'pinia'
 export const usetodosMockStore = defineStore('todosMockStore', {
   state: () => ({
     todos: [
-      {
-        id: 4,
-        title: 'Проверить почту',
-        isDone: false,
-        isFavorite: false,
-      },
+      {  
+      id: 1,
+      title: 'Проснуться',
+      isDone: true,
+      isFavorite: false,
+    },
+    {
+      id: 2,
+      title: 'Почистить зубы',
+      isDone: true,
+      isFavorite: false,
+    },
       {
         id: 3,
         title: 'Сделать кофе',
@@ -16,15 +22,9 @@ export const usetodosMockStore = defineStore('todosMockStore', {
         isFavorite: true,
       },
       {
-        id: 2,
-        title: 'Почистить зубы',
-        isDone: true,
-        isFavorite: false,
-      },
-      {
-        id: 1,
-        title: 'Проснуться',
-        isDone: true,
+        id: 4,
+        title: 'Проверить почту',
+        isDone: false,
         isFavorite: false,
       },
     ]
@@ -36,7 +36,7 @@ export const usetodosMockStore = defineStore('todosMockStore', {
     createTodo(title,isFavorite) {
 
       const newTodo = {
-        id: Date.now(),
+        id: this.todos.length+1,
         title: title,
         isDone: false,
         isFavorite: isFavorite,
@@ -49,15 +49,19 @@ export const usetodosMockStore = defineStore('todosMockStore', {
       console.log(isFavorite)
     }
     else this.todo.isFavorite=true
-    console.log(isFavorite)
+      console.log(isFavorite)
 
 },
   SortTodosIsDone(todos) {
+    const mock = usetodosMockStore()
+    this.todos = storeToRefs(mock.todos)
     this.todos = todos.filter(function (todo) {    
       return todo.isDone === true
     })
   },
   SortTodosisFavorite(todos) {
+    const mock = usetodosMockStore()
+    this.todos = storeToRefs(mock.todos)
     this.todos = todos.filter(function (todo) {    
       return todo.isFavorite === true
     })

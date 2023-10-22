@@ -33,6 +33,7 @@
           <el-button 
             v-if="!todo.isFavorite"
             @click="mock.favorite(todo.isFavorite)"
+            v-model="todo.isFavorite"
             type="warning" 
             :icon="Star"
             plain 
@@ -41,7 +42,8 @@
           />
           <el-button
             v-else
-            @click="mock.favorite(todo.isFavorite)" 
+            @click="mock.favorite(todo.isFavorite)"
+            v-model="todo.isFavorite" 
             type="warning" 
             :icon="StarFilled"
             plain 

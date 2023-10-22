@@ -11,8 +11,8 @@ const ValidateForm = reactive({
 const formRef = ref()
 const rules = reactive({
   title: [
-    { required: true, message: 'Please input title', trigger: 'blur' },
-    { min: 1, message: 'Название не должно быть пустым', trigger: 'blur' },
+    { required: true, message: 'Название не должно быть пустым', trigger: 'blur' },
+    { min: 2, message: 'Название должно быть минимум 2 символа', trigger: 'blur' },
   ]})
 const submitForm = async (formEl) => {
   if (!formEl) return
@@ -29,10 +29,8 @@ const submitForm = async (formEl) => {
 
 <template>
   <el-button 
-    type="primary" 
-    style="margin-right: 0px;"
-    class="button"  
-    text 
+    type="primary"
+    style="height: 40px; margin-top: 20px;" 
     @click="dialogFormVisible= true"
   >
     Добавить задачу
@@ -63,7 +61,7 @@ const submitForm = async (formEl) => {
     </el-form>
     <template #footer>
       <span class="dialog-footer">
-        <el-button type="primary" @click="() => {submitForm(formRef); create.createTodo(title,isFavorite); title=''; isFavorite=''}">
+        <el-button type="primary" @click="() => {submitForm(formRef); create.createTodo(ValidateForm.title,isFavorite); title=''; isFavorite=''}">
           Создать
         </el-button>
         <el-button @click="dialogFormVisible = false">Отмена</el-button>

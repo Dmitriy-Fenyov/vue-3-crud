@@ -1,29 +1,34 @@
 <script setup>
 import {usetodosMockStore} from '@/stores/todosMockStore'
 import { storeToRefs } from 'pinia'
+import { RouterLink } from 'vue-router'
+defineProps(['id'])
 const mock = usetodosMockStore()
 const {todos} = storeToRefs(mock)
-const input = todos
 </script>
 
 <template>
   <div class="item">
     <ul class="todo">
       <li>
-        <el-input v-model="input">
-          {{ todos[1].title }}
+        <el-input v-model="todos[id-1].title">
+          {{ todos[id-1].title }}
         </el-input>
       </li>
       <li class="todoProperties">
-        <el-checkbox v-model="isFavorite" label="Избранное" />
+        <el-checkbox v-model="todos[id-1].isFavorite" label="Избранное" />
       </li>
       <li class="todoProperties">
-        <el-checkbox v-model="isDone" label="Выполнено" />
+        <el-checkbox v-model="todos[id-1].isDone" label="Выполнено" />
       </li>
     </ul>
-    <el-button type="primary">
-      Сохранить
-    </el-button>
+    <RouterLink
+      :to="'/todos'"
+    >
+      <el-button type="primary">
+        Сохранить
+      </el-button>
+    </RouterLink>
   </div>
 </template>
 

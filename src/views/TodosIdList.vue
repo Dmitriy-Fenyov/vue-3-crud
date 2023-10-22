@@ -1,6 +1,8 @@
 <template>
   <h2 class="item"> Детальная страница задачи № {{ $route.params.id }}</h2>
-  <PageTodosId />
+  <PageTodosId 
+    :id="$route.params.id"
+  />
 </template>
 
 <script setup>
