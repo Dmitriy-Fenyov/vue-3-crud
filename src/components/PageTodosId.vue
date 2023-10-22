@@ -18,7 +18,7 @@ const {todos} = storeToRefs(mock)
       <li class="todoId-property">
         <el-checkbox v-model="todos[id-1].isFavorite" label="Избранное" />
       </li>
-      <li class="todoId-propertys">
+      <li class="todoId-property">
         <el-checkbox v-model="todos[id-1].isDone" label="Выполнено" />
       </li>
     </ul>
