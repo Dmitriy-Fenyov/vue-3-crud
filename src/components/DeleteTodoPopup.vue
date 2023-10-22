@@ -3,7 +3,6 @@ import { ref } from 'vue'
 defineProps(['title', 'id'])
 import {usetodosMockStore} from '@/stores/todosMockStore'
 const remove = usetodosMockStore()
-
 const dialogVisible = ref(false)
 </script>
 

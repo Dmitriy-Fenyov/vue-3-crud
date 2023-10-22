@@ -83,19 +83,5 @@ const submitForm = async (formEl) => {
 .dialog-footer button:first-child {
   margin-right: 10px;
 }
-.button {
-  display: block;
-  margin: 20px auto 0;
-  width: 125px;
-  height: 40px;
-  border: 1px solid #dedfe0;
-  background-color: #409EFF;
-  color: white;
-  :hover {
-    background-color: #a0cfff;
-  }
-  :active {
-    background-color: #337ecc;
-  }
-}
+
 </style>

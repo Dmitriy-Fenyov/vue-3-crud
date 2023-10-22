@@ -1,8 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import PostList from '@/views/PostsList.vue'
 import TodosList from '@/views/TodosList.vue'
-import PostPageId from '@/views/PostPageId.vue'
-import TodosIdList from '@/views/TodosIdList.vue'
+import PostId from '@/views/PostId.vue'
+import TodoId from '@/views/TodoId.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -20,12 +20,12 @@ const router = createRouter({
     {
       path: '/posts/:id',
       name: 'postId',
-      component: PostPageId
+      component: PostId
     },
     {
       path: '/todos/:id',
-      name: 'todosId',
-      component: TodosIdList
+      name: 'todoId',
+      component: TodoId
     },
   ]
 })

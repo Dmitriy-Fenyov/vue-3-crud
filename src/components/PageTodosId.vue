@@ -8,17 +8,17 @@ const {todos} = storeToRefs(mock)
 </script>
 
 <template>
-  <div class="item">
-    <ul class="todo">
+  <div class="todoId-wrapper">
+    <ul class="todoId-item">
       <li>
         <el-input v-model="todos[id-1].title">
           {{ todos[id-1].title }}
         </el-input>
       </li>
-      <li class="todoProperties">
+      <li class="todoId-property">
         <el-checkbox v-model="todos[id-1].isFavorite" label="Избранное" />
       </li>
-      <li class="todoProperties">
+      <li class="todoId-propertys">
         <el-checkbox v-model="todos[id-1].isDone" label="Выполнено" />
       </li>
     </ul>
@@ -34,15 +34,15 @@ const {todos} = storeToRefs(mock)
 
 
 <style lang="scss" scoped>
-.item {
+.todoId-wrapper {
   width: 1000px;
   margin: 0 auto;
 }
-.todo {
+.todoId-item {
   list-style: none;
   padding: 0;
 }
-.todoProperties {
+.todoId-property {
   height: 32px;
   margin-top: 10px;
   padding-left: 10px;

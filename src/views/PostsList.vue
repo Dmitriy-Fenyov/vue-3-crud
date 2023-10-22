@@ -1,7 +1,7 @@
 <template>
-  <PostList />
+  <PagePostList />
 </template>
 
 <script setup>
-import PostList from '@/components/PostList.vue'
+import PagePostList from '@/components/PagePostList.vue'
 </script>

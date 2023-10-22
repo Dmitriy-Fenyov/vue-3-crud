@@ -4,7 +4,7 @@ import { RouterLink} from 'vue-router'
 
 <template>
   <header>
-    <div class="wrapper">
+    <div class="wrapper-header">
       <p>Vue 3 CRUD app</p>
       <nav>
         <RouterLink active-class="active" to="/posts">Посты</RouterLink>  
@@ -20,7 +20,7 @@ header {
   box-shadow: 0px 2px 15px 0px #64646F33;
 
 }
-.wrapper {
+.wrapper-header {
   max-width: 1000px;
   display: flex;
   justify-content: space-between;

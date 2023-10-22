@@ -4,7 +4,6 @@
       <el-button 
         class="button" 
         type="default" 
-        style="margin-left: 0px;"
         @click="() => {sortIsDone.SortTodosIsDone(todos)}"
       >
         Выполнено
@@ -12,7 +11,7 @@
       <el-button 
         class="button" 
         type="default"
-        style="margin-left: 0px; margin-right: 100px;"
+        style="margin-right: 100px;"
         @click="() => {sortIsFavorite.SortTodosisFavorite(todos)}"
       >
         Избранное
@@ -23,13 +22,13 @@
     </div>
     <div class="wrapper">
       <div  
-        class="todoList"
+        class="todosList"
         v-for="todo in todos" 
         :key="todo.id"
         :class="[{ active: todo.isDone}, todoList]"
       >
         <div class="wrapper-flexbox">
-          <div class="todoList-title"><strong>{{ todo.title }}</strong></div>
+          <div class="todosList-title"><strong>{{ todo.title }}</strong></div>
           <el-button 
             v-if="!todo.isFavorite"
             @click="mock.favorite(todo.isFavorite)"
@@ -53,7 +52,7 @@
         </div>  
         <div class="wrapper-flexbox">   
           <RouterLink 
-            class="as" 
+            class="todosList-item" 
             :to="'/todos/' + todo.id"
             :id="todo.id"
             :title="todo.title"
@@ -97,6 +96,7 @@ const sortIsFavorite = usetodosMockStore()
   margin: 20px auto 0;
   width: 125px;
   height: 40px;
+  margin-left: 0px;
   
 }
 .wrapper {
@@ -106,13 +106,13 @@ const sortIsFavorite = usetodosMockStore()
   grid-template-columns: 1fr;
   grid-column-gap: 20px;  
   grid-row-gap: 20px;
-  .todoList:hover {
+  .todosList:hover {
     color: black;
     border: 2px solid black;
     box-shadow: 0px 2px 8px 0px #63636333;
   }
 }
-.todoList {
+.todosList {
   display: flex;
   justify-content: space-between;
   flex-direction: column;
@@ -128,7 +128,7 @@ const sortIsFavorite = usetodosMockStore()
   align-items: center;
   justify-content: space-between;
 }
-.todoList-title {
+.todosList-title {
   font-size: 18px;
   font-weight: 700;
   line-height: 22px;
@@ -136,7 +136,7 @@ const sortIsFavorite = usetodosMockStore()
   text-align: left;
 
 }
-.as {
+.todosList-item {
   text-decoration: none;
   color: black;
   font-size: 16px;
