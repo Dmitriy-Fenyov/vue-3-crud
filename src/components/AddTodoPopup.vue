@@ -3,7 +3,6 @@ import { reactive, ref } from 'vue'
 import {usetodosMockStore} from '@/stores/todosMockStore'
 const create = usetodosMockStore()
 const dialogFormVisible = ref(false)
-const title = ref('')
 const isFavorite = ref('')
 const ValidateForm = reactive({
   title: '',
@@ -61,7 +60,7 @@ const submitForm = async (formEl) => {
     </el-form>
     <template #footer>
       <span class="dialog-footer">
-        <el-button type="primary" @click="() => {submitForm(formRef); create.createTodo(ValidateForm.title,isFavorite); title=''; isFavorite=''}">
+        <el-button type="primary" @click="() => {dialogFormVisible = false; submitForm(formRef); create.createTodo(ValidateForm.title,isFavorite); ValidateForm.title=''; isFavorite=''}">
           Создать
         </el-button>
         <el-button @click="dialogFormVisible = false">Отмена</el-button>

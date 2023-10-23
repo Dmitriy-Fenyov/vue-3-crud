@@ -25,13 +25,13 @@
         class="todosList"
         v-for="todo in todos" 
         :key="todo.id"
-        :class="[{ active: todo.isDone}, todoList]"
+        :class="[{ active: todo.isDone}, todosList]"
       >
         <div class="wrapper-flexbox">
           <div class="todosList-title"><strong>{{ todo.title }}</strong></div>
           <el-button 
             v-if="!todo.isFavorite"
-            @click="mock.favorite(todo.isFavorite)"
+            @click="mock.favorite(todo.id)"
             v-model="todo.isFavorite"
             type="warning" 
             :icon="Star"
@@ -41,7 +41,7 @@
           />
           <el-button
             v-else
-            @click="mock.favorite(todo.isFavorite)"
+            @click="mock.favorite(todo.id)"
             v-model="todo.isFavorite" 
             type="warning" 
             :icon="StarFilled"

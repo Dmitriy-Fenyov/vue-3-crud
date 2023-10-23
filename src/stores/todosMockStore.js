@@ -1,5 +1,4 @@
-import { defineStore } from 'pinia'
-import { storeToRefs } from 'pinia'
+import { defineStore, storeToRefs } from 'pinia'
 export const usetodosMockStore = defineStore('todosMockStore', {
   state: () => ({
     todos: [
@@ -34,35 +33,40 @@ export const usetodosMockStore = defineStore('todosMockStore', {
         this.todos = this.todos.filter(t => t.id !==id)
     },
     createTodo(title,isFavorite) {
-
+      if(title) {
       const newTodo = {
         id: this.todos.length+1,
         title: title,
         isDone: false,
         isFavorite: isFavorite,
       }
-      this.todos.push(newTodo)
+      this.todos.unshift(newTodo)
+      this.dialogFormVisible = false
+    } else console.log('jib,rf')
   },
-  favorite(isFavorite) {
-    if(isFavorite) {
-      this.todo.isFavorite=false
-      console.log(isFavorite)
+  favorite(id) {
+    if(this.todos[id-1].isFavorite) {
+      this.todos[id-1].isFavorite=false
+      console.log(this.todos[id-1].isFavorite)
     }
-    else this.todo.isFavorite=true
-      console.log(isFavorite)
+    else this.todos[id-1].isFavorite=true
+      console.log(this.todos[id-1].isFavorite)
 
 },
+
   SortTodosIsDone(todos) {
     const mock = usetodosMockStore()
     this.todos = storeToRefs(mock.todos)
-    this.todos = todos.filter(function (todo) {    
+    const copyq = JSON.parse(JSON.stringify(todos))
+    this.todos = copyq.filter(function (todo) {    
       return todo.isDone === true
     })
   },
   SortTodosisFavorite(todos) {
     const mock = usetodosMockStore()
     this.todos = storeToRefs(mock.todos)
-    this.todos = todos.filter(function (todo) {    
+    const copyw = JSON.parse(JSON.stringify(todos))
+    this.todos = copyw.filter(function (todo) {    
       return todo.isFavorite === true
     })
   },
