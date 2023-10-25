@@ -45,12 +45,14 @@ export const usetodosMockStore = defineStore('todosMockStore', {
     } else console.log('jib,rf')
   },
   favorite(id) {
-    if(this.todos[id-1].isFavorite) {
-      this.todos[id-1].isFavorite=false
-      console.log(this.todos[id-1].isFavorite)
+    const todo = this.todos.find((el) => el.id === id)
+    if(todo.isFavorite) {
+      todo.isFavorite=false
+      console.log(todo.isFavorite)
     }
-    else this.todos[id-1].isFavorite=true
-      console.log(this.todos[id-1].isFavorite)
+    else 
+    todo.isFavorite=true
+    console.log(todo.isFavorite)
 
 },
 
