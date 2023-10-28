@@ -11,7 +11,6 @@ const formRef = ref()
 const rules = reactive({
   title: [
     { required: true, message: 'Название не должно быть пустым', trigger: 'blur' },
-    { min: 2, message: 'Название должно быть минимум 2 символа', trigger: 'blur' },
   ]})
 const submitForm = async (formEl) => {
   if (!formEl) return
