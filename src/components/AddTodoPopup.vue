@@ -1,27 +1,22 @@
 <script setup>
-import { reactive, ref } from 'vue'
+import { ref } from 'vue'
 import {usetodosMockStore} from '@/stores/todosMockStore'
 const create = usetodosMockStore()
 const dialogFormVisible = ref(false)
-const isFavorite = ref('')
-const ValidateForm = reactive({
-  title: '',
-})
-const formRef = ref()
-const rules = reactive({
-  title: [
-    { required: true, message: 'Название не должно быть пустым', trigger: 'blur' },
-  ]})
-const submitForm = async (formEl) => {
-  if (!formEl) return
-  await formEl.validate((valid) => {
-    if (valid) {
-      console.log('submit!')
-    } else {
-      console.log('error submit!')
-      return false
-    }
-  })
+const isFavorite = ref(false)
+const isFormValid = ref(true)
+const title = ref('')
+const validateForm = () => {
+  isFormValid.value = title.value.length > 0
+}
+const addItem = () => {
+  validateForm()
+  if (isFormValid.value === true) {
+    create.createTodo(title.value, isFavorite.value)
+    title.value = ''
+    isFavorite.value = false
+    dialogFormVisible.value = false
+  }
 }
 </script>
 
@@ -40,15 +35,16 @@ const submitForm = async (formEl) => {
     title="Создать задачу"
   >
     <el-form
-      :rules="rules" 
-      ref="formRef"
-      :model="ValidateForm"
+      :model="validateForm"
     >
       <el-form-item
         prop="title"
       >
+        <p v-show="!isFormValid" style="margin: 0; color: red;">
+          Пожалуйста, введите название!
+        </p>
         <el-input
-          v-model="ValidateForm.title"
+          v-model="title"
           placeholder="Название задачи"
           autocomplete="off"
         />
@@ -59,7 +55,7 @@ const submitForm = async (formEl) => {
     </el-form>
     <template #footer>
       <span class="dialog-footer">
-        <el-button type="primary" @click="() => {dialogFormVisible = false; submitForm(formRef); create.createTodo(ValidateForm.title,isFavorite); ValidateForm.title=''; isFavorite=''}">
+        <el-button type="primary" @click="() => {addItem()}">
           Создать
         </el-button>
         <el-button @click="dialogFormVisible = false">Отмена</el-button>

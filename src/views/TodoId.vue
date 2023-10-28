@@ -2,10 +2,22 @@
 import {usetodosMockStore} from '@/stores/todosMockStore'
 import { storeToRefs } from 'pinia'
 import { RouterLink } from 'vue-router'
-defineProps(['id','title'])
+import { ref, onBeforeMount } from 'vue'
 const mock = usetodosMockStore()
 const {todos} = storeToRefs(mock)
-console.log(todos.value[1])
+import { useRoute } from 'vue-router'
+const route = useRoute()
+
+const todo = ref({})
+
+onBeforeMount(() => {
+  console.log(route.params.id)
+  console.log(todos.value)
+  const item = todos.value.find((el) => el.id == route.params.id)
+  console.log(item)
+  todo.value = { ...item }
+  console.log(todo.value.title)
+})
 
 </script>
 
@@ -14,15 +26,15 @@ console.log(todos.value[1])
   <div class="todoId-wrapper">
     <ul class="todoId-item">
       <li>
-        <el-input v-model="todos[id].title">
-          {{ todos[id].title }}
+        <el-input v-model="todo.title">
+          {{ todo.title }}
         </el-input>
       </li>
       <li class="todoId-property">
-        <el-checkbox v-model="todos[id].isFavorite" label="Избранное" />
+        <el-checkbox v-model="todo.isFavorite" label="Избранное" />
       </li>
       <li class="todoId-property">
-        <el-checkbox v-model="todos[id].isDone" label="Выполнено" />
+        <el-checkbox v-model="todo.isDone" label="Выполнено" />
       </li>
     </ul>
     <RouterLink

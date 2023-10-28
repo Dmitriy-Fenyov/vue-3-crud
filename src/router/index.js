@@ -8,6 +8,12 @@ const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
+      path: '/',
+      name: 'index',
+      redirect: '/posts',
+      component: PostList,
+    },
+    {
       path: '/posts',
       name: 'posts',
       component: PostList
@@ -26,6 +32,10 @@ const router = createRouter({
       path: '/todos/:id',
       name: 'todoId',
       component: TodoId
+    },
+    {
+      path: '/:pathMatch(.*)*',
+      redirect: '/',
     },
   ]
 })

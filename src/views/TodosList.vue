@@ -3,21 +3,16 @@
     <h1 class="todos-title">CRUD задачи</h1>
     <div class="wrapper-todos">
       <div class="wrapper-todos-btn">
-        <el-button 
-          class="button" 
-          type="default" 
-          @click="() => {sortIsDone.SortTodosIsDone(todos)}"
-        >
-          Выполнено
-        </el-button>
-        <el-button 
-          class="button" 
-          type="default"
-          style="margin-right: 100px;"
-          @click="() => {sortIsFavorite.SortTodosisFavorite(todos)}"
-        >
-          Избранное
-        </el-button>
+        <div class="checkbox">
+          <el-checkbox
+            v-for="option in filterOptions"
+            :key="option.key"
+            :label="option.label"
+            v-model="option.isApply"
+            class="button"
+            border
+          />
+        </div>
         <AddTodoPopup> 
           Добавить задачу
         </AddTodoPopup>
@@ -25,7 +20,7 @@
       <div class="wrapper">
         <div  
           class="todosList"
-          v-for="todo in todos" 
+          v-for="todo in filteredTodos"
           :key="todo.id"
           :class="[{ active: todo.isDone}, todosList]"
         >
@@ -79,9 +74,7 @@ import AddTodoPopup from '@/components/AddTodoPopup.vue'
 import {usetodosMockStore} from '@/stores/todosMockStore'
 import { storeToRefs } from 'pinia'
 const mock = usetodosMockStore()
-const {todos} = storeToRefs(mock)
-const sortIsDone = usetodosMockStore()
-const sortIsFavorite = usetodosMockStore()
+const {filteredTodos, filterOptions } = storeToRefs(mock)
 </script>
 
 <style lang="scss" scoped>
@@ -103,10 +96,17 @@ margin: 0;
 }
 .wrapper-todos-btn {
   display: flex;
+  justify-content: space-between;
+  vertical-align: middle;
+  align-items: center;
+}
+.checkbox{
+  display: flex;
 }
 .button {
   display: block;
-  margin: 20px auto 0;
+  margin: 20px 20px 0;
+  padding-top: 10px;
   width: 125px;
   height: 40px;
   margin-left: 0px;
@@ -172,5 +172,8 @@ margin: 0;
   padding: 15px;
   color: #90EE90;
   border: 2px solid #90EE90;
+  }
+  .el-checkbox__input {
+    background-color: aqua;
   }
 </style>

@@ -1,4 +1,4 @@
-import { defineStore, storeToRefs } from 'pinia'
+import { defineStore } from 'pinia'
 export const usetodosMockStore = defineStore('todosMockStore', {
   state: () => ({
     todos: [
@@ -26,7 +26,19 @@ export const usetodosMockStore = defineStore('todosMockStore', {
         isDone: true,
         isFavorite: false,
       },
-    ]
+    ],
+    filterOptions: [
+      {
+        key: 'isFavorite',
+        label: 'Избранное',
+        isApply: false,
+      },
+      {
+        key: 'isDone',
+        label: 'Выполнено',
+        isApply: false,
+      }
+    ],
   }),
   actions: {
     deleteTodo(id) {
@@ -53,24 +65,22 @@ export const usetodosMockStore = defineStore('todosMockStore', {
     else 
     todo.isFavorite=true
     console.log(todo.isFavorite)
-
 },
-
-  SortTodosIsDone(todos) {
-    const mock = usetodosMockStore()
-    this.todos = storeToRefs(mock.todos)
-    const copyq = JSON.parse(JSON.stringify(todos))
-    this.todos = copyq.filter(function (todo) {    
-      return todo.isDone === true
-    })
   },
-  SortTodosisFavorite(todos) {
-    const mock = usetodosMockStore()
-    this.todos = storeToRefs(mock.todos)
-    const copyw = JSON.parse(JSON.stringify(todos))
-    this.todos = copyw.filter(function (todo) {    
-      return todo.isFavorite === true
-    })
-  },
-  }
+  getters: {
+		filteredTodos: (state) => {
+      const filterBy = state.filterOptions.filter(el => el.isApply === true)
+      const result = state.todos.filter(todo => {
+        for (let i = 0; i < filterBy.length; i++) {
+          const key = filterBy[i].key
+          const isMatched = todo[key] === true
+          if (!isMatched) {
+            return false
+          }
+        }
+        return true
+      })
+      return result
+    }
+	},
 })
