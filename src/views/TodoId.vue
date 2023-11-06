@@ -3,20 +3,15 @@ import {usetodosMockStore} from '@/stores/todosMockStore'
 import { storeToRefs } from 'pinia'
 import { RouterLink } from 'vue-router'
 import { ref, onBeforeMount } from 'vue'
+import { useRoute } from 'vue-router'
 const mock = usetodosMockStore()
 const {todos} = storeToRefs(mock)
-import { useRoute } from 'vue-router'
 const route = useRoute()
-
 const todo = ref({})
 
 onBeforeMount(() => {
-  console.log(route.params.id)
-  console.log(todos.value)
   const item = todos.value.find((el) => el.id == route.params.id)
-  console.log(item)
   todo.value = { ...item }
-  console.log(todo.value.title)
 })
 
 </script>
@@ -40,7 +35,7 @@ onBeforeMount(() => {
     <RouterLink
       :to="'/todos'"
     >
-      <el-button type="primary">
+      <el-button type="primary" @click="mock.favorite(todo)">
         Сохранить
       </el-button>
     </RouterLink>

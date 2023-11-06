@@ -53,18 +53,20 @@ export const usetodosMockStore = defineStore('todosMockStore', {
         isFavorite: isFavorite,
       }
       this.todos.unshift(newTodo)
-      this.dialogFormVisible = false
-    } else console.log('Не создал задачу')
+      this.isdialogFormVisible = false
+    }
   },
   favorite(id) {
     const todo = this.todos.find((el) => el.id === id)
     if(todo.isFavorite) {
       todo.isFavorite=false
-      console.log(todo.isFavorite)
     }
     else 
     todo.isFavorite=true
-    console.log(todo.isFavorite)
+},
+editTodo(updatedTodo) {
+  const index = this.todos.findIndex(el => el.id === updatedTodo.value.id)
+  this.todos[index] = updatedTodo.value
 },
   },
   getters: {

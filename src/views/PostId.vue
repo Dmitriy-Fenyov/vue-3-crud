@@ -1,7 +1,7 @@
 <template>
   <div class="postId-wrapper">
     <h2 class="postId-title"> Детальная страница поста № {{ $route.params.id }}</h2>
-    <el-skeleton v-if="load===false" />
+    <el-skeleton v-if="isload===false" />
     <div class="postId-postTitle"><strong>{{ post.title }}</strong></div> 
     <div class="postId-postBody">{{ post.body }}</div>
     <div class="positionId">post id:{{ post.id }}</div>
@@ -14,17 +14,16 @@ export default {
   data() {
     return {
       post: [],
-      load: false
+      isload: false
     }
   },
   methods: {
     async fetchPosts() {
       try {
-        this.load= false
+        this.isload= false
         const response = await axios.get(`https://jsonplaceholder.typicode.com/posts/` +  this.$route.params.id  )
         this.post = response.data
-        this.load= true
-        
+        this.isload= true
       } catch (e) {
         alert('Erorr')
       } 
@@ -65,7 +64,6 @@ export default {
   font-family: Arial;
   font-size: 16px;
   line-height: 18px;
-
 }
 </style>
 

@@ -1,7 +1,7 @@
 <template>
   <div class="item">
     <h2>Получение списка всех постов</h2>
-    <div class="wrapper" v-if="load===false"> 
+    <div class="wrapper" v-if="isload===false"> 
       <el-skeleton class="post" />
       <el-skeleton class="post" />
       <el-skeleton class="post" />
@@ -38,14 +38,14 @@ export default {
       posts: [],
       page: 1,
       limit: 4,
-      load: false
+      isload: false
     }
   },
   methods: {
     
     async fetchPosts() {
       try {
-        this.load= false
+        this.isload= false
         const response = await axios.get('https://jsonplaceholder.typicode.com/posts', {
           params: {
             _page: this.page,
@@ -53,7 +53,7 @@ export default {
           }
         } )
         this.posts = response.data
-        this.load= true
+        this.isload= true
         
       } catch (e) {
         alert('Erorr')
@@ -61,20 +61,22 @@ export default {
     },
     async changePage() {
       try {
-                this.page +=1
-                const response = await axios.get('https://jsonplaceholder.typicode.com/posts',
-                    { params: {
-                        _page: this.page,
-                        _limit: this.limit
-                    }
-            })
-                this.posts = [...this.posts, ...response.data]
-            } 
-            catch (e) {
-                alert('ошибка')
-            } 
-        }
-    },
+        this.isload= false
+        this.page +=1
+        const response = await axios.get('https://jsonplaceholder.typicode.com/posts',
+        { params: {
+            _page: this.page,
+            _limit: this.limit
+          }
+        })
+        this.posts = [...this.posts, ...response.data]
+        this.isload= true
+      } 
+      catch (e) {
+          alert('ошибка')
+      } 
+    }
+  },
   
   mounted() {
     this.fetchPosts()
@@ -83,7 +85,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
 .item {
   width: 1000px;
   margin: 0 auto;

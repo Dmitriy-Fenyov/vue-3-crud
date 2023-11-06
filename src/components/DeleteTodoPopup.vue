@@ -1,21 +1,21 @@
 <script setup>
 import { ref } from 'vue'
-defineProps(['title', 'id'])
 import {usetodosMockStore} from '@/stores/todosMockStore'
+defineProps(['title', 'id'])
 const remove = usetodosMockStore()
-const dialogVisible = ref(false)
+const isdialogVisible = ref(false)
 </script>
 
 <template>
   <el-button 
     type="danger"  
-    @click="dialogVisible = true"
+    @click="isdialogVisible = true"
   >
     Удалить
   </el-button>
 
   <el-dialog
-    v-model="dialogVisible"
+    v-model="isdialogVisible"
     width="30%"
     draggable
   >
@@ -24,12 +24,12 @@ const dialogVisible = ref(false)
       <span class="dialog-footer">
         <el-button 
           type="dander" 
-          @click="() => { dialogVisible = false; remove.deleteTodo(id)}"
+          @click="() => { isdialogVisible = false; remove.deleteTodo(id)}"
           style="background-color: #f56c6c; color: aliceblue;"
         >
           Удалить
         </el-button>
-        <el-button @click="dialogVisible = false">Отмена</el-button>
+        <el-button @click="isdialogVisible = false">Отмена</el-button>
       </span>
     </template>
   </el-dialog>

@@ -83,11 +83,11 @@ const {filteredTodos, filterOptions } = storeToRefs(mock)
   margin: 0 auto;
 }
 .todos-title {
-font-size: 32px;
-font-weight: 700;
-line-height: 36px;
-letter-spacing: 0em;
-margin: 0;
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 36px;
+  letter-spacing: 0em;
+  margin: 0;
 }
 .wrapper-todos {
   width: 500px;
@@ -110,7 +110,6 @@ margin: 0;
   width: 125px;
   height: 40px;
   margin-left: 0px;
-  
 }
 .wrapper {
   width: 500px;
@@ -147,7 +146,6 @@ margin: 0;
   line-height: 22px;
   letter-spacing: 0em;
   text-align: left;
-
 }
 .todosList-item {
   text-decoration: none;
@@ -173,7 +171,7 @@ margin: 0;
   color: #90EE90;
   border: 2px solid #90EE90;
   }
-  .el-checkbox__input {
-    background-color: aqua;
-  }
+.el-checkbox__input {
+  background-color: aqua;
+}
 </style>

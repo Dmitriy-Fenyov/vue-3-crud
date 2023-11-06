@@ -2,7 +2,7 @@
 import { ref } from 'vue'
 import {usetodosMockStore} from '@/stores/todosMockStore'
 const create = usetodosMockStore()
-const dialogFormVisible = ref(false)
+const isdialogFormVisible = ref(false)
 const isFavorite = ref(false)
 const isFormValid = ref(true)
 const title = ref('')
@@ -15,7 +15,7 @@ const addItem = () => {
     create.createTodo(title.value, isFavorite.value)
     title.value = ''
     isFavorite.value = false
-    dialogFormVisible.value = false
+    isdialogFormVisible.value = false
   }
 }
 </script>
@@ -24,13 +24,13 @@ const addItem = () => {
   <el-button 
     type="primary"
     style="height: 40px; margin-top: 20px;" 
-    @click="dialogFormVisible= true"
+    @click="isdialogFormVisible= true"
   >
     Добавить задачу
   </el-button>
 
   <el-dialog
-    v-model="dialogFormVisible"
+    v-model="isdialogFormVisible"
     style="width: 600px;"
     title="Создать задачу"
   >
@@ -58,7 +58,7 @@ const addItem = () => {
         <el-button type="primary" @click="() => {addItem()}">
           Создать
         </el-button>
-        <el-button @click="dialogFormVisible = false">Отмена</el-button>
+        <el-button @click="isdialogFormVisible = false">Отмена</el-button>
       </span>
     </template>
   </el-dialog>
