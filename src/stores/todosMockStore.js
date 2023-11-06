@@ -65,6 +65,14 @@ export const usetodosMockStore = defineStore('todosMockStore', {
     else 
     todo.isFavorite=true
 },
+done(id) {
+  const todo = this.todos.find((el) => el.id === id)
+  if(todo.isDone) {
+    todo.isDone=false
+  }
+  else 
+  todo.isDone=true
+},
 editTodo(updatedTodo) {
   console.log(updatedTodo.id) 
   const index = this.todos.findIndex(el => el.id === updatedTodo.id)

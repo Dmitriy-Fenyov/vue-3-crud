@@ -23,6 +23,7 @@
           v-for="todo in filteredTodos"
           :key="todo.id"
           :class="[{ active: todo.isDone}, todosList]"
+          @click="mock.done(todo.id)"
         >
           <div class="wrapper-flexbox">
             <div class="todosList-title"><strong>{{ todo.title }}</strong></div>
@@ -135,6 +136,7 @@ const {filteredTodos, filterOptions } = storeToRefs(mock)
   border: 2px solid #AAAAAA;
   padding: 15px;
   color: black;
+  cursor: pointer;
 }
 .wrapper-flexbox {
   display: flex;

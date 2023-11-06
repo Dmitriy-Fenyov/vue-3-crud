@@ -10,6 +10,7 @@
 
 <script>
 import { usePost } from "../hooks/usePost"
+
 export default {
   data() {
     return {
