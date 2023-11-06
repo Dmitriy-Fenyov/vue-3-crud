@@ -1,7 +1,3 @@
-<script setup>
-
-</script>
-
 <template>
   <footer>
     <div class="wrapper-footer">

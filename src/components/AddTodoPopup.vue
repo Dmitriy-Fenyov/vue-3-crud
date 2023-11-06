@@ -55,7 +55,7 @@ const addItem = () => {
     </el-form>
     <template #footer>
       <span class="dialog-footer">
-        <el-button type="primary" @click="() => {addItem()}">
+        <el-button type="primary" @click="addItem">
           Создать
         </el-button>
         <el-button @click="isdialogFormVisible = false">Отмена</el-button>

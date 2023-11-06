@@ -1,7 +1,7 @@
 <template>
   <div class="postId-wrapper">
     <h2 class="postId-title"> Детальная страница поста № {{ $route.params.id }}</h2>
-    <el-skeleton v-if="isload===false" />
+    <el-skeleton v-if="isLoaded===false" />
     <div class="postId-postTitle"><strong>{{ post.title }}</strong></div> 
     <div class="postId-postBody">{{ post.body }}</div>
     <div class="positionId">post id:{{ post.id }}</div>
@@ -9,28 +9,17 @@
 </template>
 
 <script>
-import axios from "axios"
+import { usePost } from "../hooks/usePost"
 export default {
   data() {
     return {
-      post: [],
-      isload: false
     }
   },
-  methods: {
-    async fetchPosts() {
-      try {
-        this.isload= false
-        const response = await axios.get(`https://jsonplaceholder.typicode.com/posts/` +  this.$route.params.id  )
-        this.post = response.data
-        this.isload= true
-      } catch (e) {
-        alert('Erorr')
-      } 
+  setup() {
+    const {post, isLoaded} = usePost()
+    return {
+      post, isLoaded
     }
-  },
-  mounted() {
-    this.fetchPosts()
   }
 }
 </script>

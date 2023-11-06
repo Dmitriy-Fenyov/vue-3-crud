@@ -1,19 +1,23 @@
 <script setup>
 import {usetodosMockStore} from '@/stores/todosMockStore'
 import { storeToRefs } from 'pinia'
-import { RouterLink } from 'vue-router'
 import { ref, onBeforeMount } from 'vue'
-import { useRoute } from 'vue-router'
-const mock = usetodosMockStore()
-const {todos} = storeToRefs(mock)
+import { useRoute, useRouter } from 'vue-router'
+
+const todoStore = usetodosMockStore()
+const {todos} = storeToRefs(todoStore)
 const route = useRoute()
+const router = useRouter()
 const todo = ref({})
+const handleSave = () => {
+  todoStore.editTodo(todo.value)
+  router.push({name:'todos'})
+}
 
 onBeforeMount(() => {
   const item = todos.value.find((el) => el.id == route.params.id)
   todo.value = { ...item }
 })
-
 </script>
 
 <template>
@@ -32,13 +36,9 @@ onBeforeMount(() => {
         <el-checkbox v-model="todo.isDone" label="Выполнено" />
       </li>
     </ul>
-    <RouterLink
-      :to="'/todos'"
-    >
-      <el-button type="primary" @click="mock.favorite(todo)">
-        Сохранить
-      </el-button>
-    </RouterLink>
+    <el-button type="primary" @click="handleSave">
+      Сохранить
+    </el-button>
   </div>
 </template>
 
