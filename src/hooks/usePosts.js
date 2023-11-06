@@ -17,11 +17,10 @@ export function usePosts(limit) {
         isLoaded.value = true
         
       } catch (e) {
-        alert('Erorr')
+        alert('Error usePosts')
       }
     }
   onMounted(fetchPosts)
-
   return {
     posts, isLoaded
   }    

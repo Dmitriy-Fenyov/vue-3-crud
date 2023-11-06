@@ -20,20 +20,41 @@
         <el-skeleton class="post" />
       </template>
     </div>
-    <el-button 
+    <el-button
+      v-if="isLoaded" 
       class="button" 
       type="primary" 
-      @click="changePage(page,limit)"
+      @click="changePage(page,limit)" 
     >
-      <span 
-        class="loading"
-        v-loading="!isLoaded"
-        element-loading-text="Загрузка..."
-        :element-loading-spinner="svg"
-        element-loading-background="rgba(0, 0, 0, 0.8)"
-      />
-
       Загрузить ещё
+    </el-button>
+    <el-button
+      v-else
+      class="button"
+      type="primary" 
+      loading
+      @click="changePage(page,limit)"
+      style="display: flex;"
+    >
+      <template #loading>
+        <div class="custom-loading">
+          <svg class="circular" viewBox="-10, -10, 50, 50">
+            <path
+              class="path"
+              d="
+            M 30 15
+            L 28 17
+            M 25.61 25.61
+            A 15 15, 0, 0, 1, 15 30
+            A 15 15, 0, 1, 1, 27.99 7.5
+            L 15 15
+          "
+              style="stroke-width: 4px; fill: rgba(0, 0, 0, 0)"
+            />
+          </svg>
+        </div>
+      </template>
+      Загрузка...
     </el-button>
   </div>
 </template>
@@ -114,15 +135,19 @@ export default {
   width: 171px;
   height: 40px;
 }
-.element-loading-background {
-background-color: white;
-color: azure;
-fill: azure;
+.el-button .custom-loading .circular {
+  margin-right: 6px;
+  width: 18px;
+  height: 18px;
+  animation: loading-rotate 2s linear infinite;
 }
-.element-loading-spinner {
-  background-color: white;
-  color: azure;
-  fill: azure;
+.el-button .custom-loading .circular .path {
+  animation: loading-dash 1.5s ease-in-out infinite;
+  stroke-dasharray: 90, 150;
+  stroke-dashoffset: 0;
+  stroke-width: 2;
+  stroke: var(--el-button-text-color);
+  stroke-linecap: round;
 }
 </style>
 

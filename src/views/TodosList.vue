@@ -73,6 +73,7 @@ import DeleteTodoPopup from '@/components/DeleteTodoPopup.vue'
 import AddTodoPopup from '@/components/AddTodoPopup.vue'
 import {usetodosMockStore} from '@/stores/todosMockStore'
 import { storeToRefs } from 'pinia'
+
 const mock = usetodosMockStore()
 const {filteredTodos, filterOptions } = storeToRefs(mock)
 </script>

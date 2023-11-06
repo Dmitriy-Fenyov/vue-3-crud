@@ -18,7 +18,6 @@ import { RouterLink} from 'vue-router'
 header {
   margin-bottom: 50px;
   box-shadow: 0px 2px 15px 0px #64646F33;
-
 }
 .wrapper-header {
   max-width: 1000px;
@@ -35,7 +34,6 @@ nav {
   width: 144px;
   justify-content: space-between;
   padding: 15px;
-  
   a {
     text-decoration: none;
     color: black;

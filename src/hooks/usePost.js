@@ -1,5 +1,8 @@
 import axios from "axios"
 import { ref, onMounted } from 'vue'
+import { useRoute } from 'vue-router'
+
+const route = useRoute()
 
 export function usePost() {
     const post =  ref([])
@@ -7,17 +10,14 @@ export function usePost() {
     const fetchPost = async () => {
       try {
         isLoaded.value = false
-        const response = await axios.get(`https://jsonplaceholder.typicode.com/posts/` +  this.$route.params.id  )
+        const response = await axios.get(`https://jsonplaceholder.typicode.com/posts/` +  route.params.id  )
         post.value = response.data
         isLoaded.value = true
-        
       } catch (e) {
         alert('Error usePost')
-        console.log(post.value)
       }
     }
   onMounted(fetchPost)
-
   return {
     post, isLoaded
   }    

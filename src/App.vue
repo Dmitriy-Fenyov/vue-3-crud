@@ -2,7 +2,6 @@
 import { RouterView } from 'vue-router'
 import PageHeader from '@/components/PageHeader.vue'
 import PageFooter from '@/components/PageFooter.vue'
-
 </script>
 
 <template>
@@ -16,7 +15,6 @@ import PageFooter from '@/components/PageFooter.vue'
 </template>
 
 <style lang="scss" scoped>
-
 .page {
   display: flex;
   flex-direction: column;
@@ -25,5 +23,4 @@ import PageFooter from '@/components/PageFooter.vue'
 main {
   flex-grow: 1;
 }
-
 </style>

@@ -1,6 +1,7 @@
 <script setup>
 import { ref } from 'vue'
 import {usetodosMockStore} from '@/stores/todosMockStore'
+
 defineProps(['title', 'id'])
 const remove = usetodosMockStore()
 const isdialogVisible = ref(false)
@@ -13,7 +14,6 @@ const isdialogVisible = ref(false)
   >
     Удалить
   </el-button>
-
   <el-dialog
     v-model="isdialogVisible"
     width="30%"
@@ -35,5 +35,3 @@ const isdialogVisible = ref(false)
   </el-dialog>
 </template>
 
-<style lang="scss" scoped>
-</style>

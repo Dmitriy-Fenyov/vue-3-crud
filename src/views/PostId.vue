@@ -20,12 +20,11 @@ export default {
     return {
       post, isLoaded
     }
-  }
+  },
 }
 </script>
 
 <style lang="scss" scoped>
-
 .postId-wrapper {
   width: 1000px;
   margin: 0 auto;

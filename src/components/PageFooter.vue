@@ -18,7 +18,6 @@
   max-width: 1000px;
   height: 50px;
   margin: 0 auto;
-
   }
   p {
     text-align: center;

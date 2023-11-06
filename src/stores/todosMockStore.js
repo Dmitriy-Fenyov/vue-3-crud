@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia'
+
 export const usetodosMockStore = defineStore('todosMockStore', {
   state: () => ({
     todos: [
