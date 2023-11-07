@@ -73,8 +73,7 @@ done(id) {
   else 
   todo.isDone=true
 },
-editTodo(updatedTodo) {
-  console.log(updatedTodo.id) 
+editTodo(updatedTodo) { 
   const index = this.todos.findIndex(el => el.id === updatedTodo.id)
   this.todos[index] = updatedTodo
 },

@@ -17,8 +17,8 @@
           Добавить задачу
         </AddTodoPopup>
       </div>
-      <div class="wrapper">
-        <div  
+      <ul class="wrapper">
+        <li  
           v-for="todo in filteredTodos"
           :key="todo.id"
           class="todosList"
@@ -46,18 +46,22 @@
             >
               Редактировать
             </RouterLink>
-            <DeleteTodoPopup 
-              :title="todo.title" 
-              :id="todo.id"
-            />
-          </div>    
-        </div>
-      </div>
+            <el-button 
+              type="danger"  
+              @click.stop="() => { openDeleteTodoPopup(todo.title, todo.id) }"
+            >
+              Удалить
+            </el-button>
+          </div> 
+        </li>
+      </ul>
+      <DeleteTodoPopup ref="deleteTodoPopup" />
     </div>
   </div>
 </template>
 
 <script setup>
+import { ref } from 'vue'
 import { Star, StarFilled } from '@element-plus/icons-vue'
 import DeleteTodoPopup from '@/components/DeleteTodoPopup.vue'
 import AddTodoPopup from '@/components/AddTodoPopup.vue'
@@ -66,6 +70,10 @@ import { storeToRefs } from 'pinia'
 
 const mock = usetodosMockStore()
 const {filteredTodos, filterOptions } = storeToRefs(mock)
+const deleteTodoPopup = ref(null)
+const openDeleteTodoPopup = (todoTitle, id) => {
+  deleteTodoPopup.value.openPopup(todoTitle, id)
+}
 </script>
 
 <style lang="scss" scoped>
@@ -109,6 +117,7 @@ const {filteredTodos, filterOptions } = storeToRefs(mock)
   grid-template-columns: 1fr;
   grid-column-gap: 20px;  
   grid-row-gap: 20px;
+  // list-style: none;
 }
 .todosList {
   display: flex;
