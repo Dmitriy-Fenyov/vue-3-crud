@@ -10,18 +10,16 @@
 
 <script>
 import { usePost } from "../hooks/usePost"
+import { useRoute } from 'vue-router'
 
 export default {
-  data() {
-    return {
-    }
-  },
   setup() {
-    const {post, isLoaded} = usePost()
+    const route = useRoute()
+    const {post, isLoaded} = usePost(route.params.id)
     return {
       post, isLoaded
     }
-  },
+  }
 }
 </script>
 

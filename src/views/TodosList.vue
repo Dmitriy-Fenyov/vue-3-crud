@@ -19,9 +19,9 @@
       </div>
       <div class="wrapper">
         <div  
-          class="todosList"
           v-for="todo in filteredTodos"
           :key="todo.id"
+          class="todosList"
           :class="[{ active: todo.isDone}, todosList]"
           @click="mock.done(todo.id)"
         >
@@ -120,11 +120,6 @@ const {filteredTodos, filterOptions } = storeToRefs(mock)
   grid-template-columns: 1fr;
   grid-column-gap: 20px;  
   grid-row-gap: 20px;
-  .todosList:hover {
-    color: black;
-    border: 2px solid black;
-    box-shadow: 0px 2px 8px 0px #63636333;
-  }
 }
 .todosList {
   display: flex;
@@ -137,6 +132,14 @@ const {filteredTodos, filterOptions } = storeToRefs(mock)
   padding: 15px;
   color: black;
   cursor: pointer;
+  &:hover {
+    border-color: black;
+    box-shadow: 0px 2px 8px 0px #00000033;
+  }
+  &.active:hover {
+    color: red;
+    border-color: red;
+  }
 }
 .wrapper-flexbox {
   display: flex;
