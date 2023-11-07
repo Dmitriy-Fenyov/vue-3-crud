@@ -13,90 +13,51 @@
         <div>{{ post.body }}</div>
         <div class="positionId">post id:{{ post.id }}</div>
       </RouterLink>
-      <template v-if="isLoaded === false"> 
-        <el-skeleton class="post" />
-        <el-skeleton class="post" />
-        <el-skeleton class="post" />
-        <el-skeleton class="post" />
+      <template v-if="isLoaded === false">
+        <el-skeleton
+          v-for="n in POSTS_PER_PAGE"
+          :key="n"
+          class="post"
+        />
       </template>
     </div>
     <el-button
-      v-if="isLoaded" 
       class="button" 
-      type="primary" 
-      @click="changePage(page,limit)" 
+      type="primary"
+      :loading="!isLoaded"
+      @click="loadPage(currentPage + 1)" 
     >
-      Загрузить ещё
-    </el-button>
-    <el-button
-      v-else
-      class="button"
-      type="primary" 
-      loading
-      @click="changePage(page,limit)"
-      style="display: flex;"
-    >
-      <template #loading>
-        <div class="custom-loading">
-          <svg class="circular" viewBox="-10, -10, 50, 50">
-            <path
-              class="path"
-              d="
-            M 30 15
-            L 28 17
-            M 25.61 25.61
-            A 15 15, 0, 0, 1, 15 30
-            A 15 15, 0, 1, 1, 27.99 7.5
-            L 15 15
-          "
-              style="stroke-width: 4px; fill: rgba(0, 0, 0, 0)"
-            />
-          </svg>
-        </div>
-      </template>
-      Загрузка...
+      {{ isLoaded ? 'Загрузить ещё' : 'Загрузка...' }}
     </el-button>
   </div>
 </template>
 
-<script>
-import axios from "axios"
-import { usePosts } from "../hooks/usePosts"
+<script setup>
+import { ref, onBeforeMount } from 'vue'
+import { loadPosts } from "../api/loadPosts"
 
-export default {
-  data() {
-    return {
-      page: 1,
-      limit:4,
-    }
-  },
-  setup() {
-    const {posts, isLoaded} = usePosts(4)
-    return {
-      posts, isLoaded
-    }
-  },
-  methods: {
-    
-    async changePage() {
-      try {
-        this.isLoaded = false
-        this.page +=1
-        const response = await axios.get('https://jsonplaceholder.typicode.com/posts', {
-          params: {
-            _page: this.page,
-            _limit: this.limit
-          }
-        })
-        this.posts = [...this.posts, ...response.data]
-        this.isLoaded = true
-      } 
-      catch (e) {
-          alert('ошибка')
-      } 
-    }
-  },
+const POSTS_PER_PAGE = 4
+
+const posts =  ref([])
+const isLoaded =  ref(true)
+let currentPage = 0
+
+const loadPage = async (page) =>  {
+  try {
+    isLoaded.value = false
+    const newPosts = await loadPosts(page, POSTS_PER_PAGE)
+    posts.value = [...posts.value, ...newPosts]
+    currentPage = page
+    isLoaded.value = true
+  } 
+  catch (e) {
+    alert('ошибка')
+  } 
 }
+
+onBeforeMount(() => {
+  loadPage(currentPage + 1)
+})
 </script>
 
 <style lang="scss" scoped>
