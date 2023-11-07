@@ -9,14 +9,8 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      name: 'index',
-      redirect: '/posts',
-      component: PostList,
-    },
-    {
-      path: '/posts',
       name: 'posts',
-      component: PostList
+      component: PostList,
     },
     {
       path: '/todos',

@@ -28,24 +28,13 @@
           <div class="wrapper-flexbox">
             <div class="todosList-title"><strong>{{ todo.title }}</strong></div>
             <el-button 
-              v-if="!todo.isFavorite"
-              @click="mock.favorite(todo.id)"
+              @click.stop="mock.favorite(todo.id)"
               v-model="todo.isFavorite"
               type="warning" 
-              :icon="Star"
+              :icon=" !todo.isFavorite? Star: StarFilled"
               plain 
               circle 
               class="mrgn-left" 
-            />
-            <el-button
-              v-else
-              @click="mock.favorite(todo.id)"
-              v-model="todo.isFavorite" 
-              type="warning" 
-              :icon="StarFilled"
-              plain 
-              circle 
-              class="mrgn-left"
             />
           </div>  
           <div class="wrapper-flexbox">   

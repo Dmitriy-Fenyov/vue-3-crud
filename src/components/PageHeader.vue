@@ -7,7 +7,7 @@ import { RouterLink} from 'vue-router'
     <div class="wrapper-header">
       <p>Vue 3 CRUD app</p>
       <nav>
-        <RouterLink active-class="active" to="/posts">Посты</RouterLink>  
+        <RouterLink active-class="active" to="/">Посты</RouterLink>  
         <RouterLink active-class="active" to="/todos">Задачи</RouterLink> 
       </nav>
     </div>
