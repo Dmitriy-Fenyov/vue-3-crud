@@ -113,11 +113,11 @@ const openDeleteTodoPopup = (todoTitle, id) => {
 .wrapper {
   width: 500px;
   margin-top: 30px;
+  padding: 0; 
   display: grid;
   grid-template-columns: 1fr;
   grid-column-gap: 20px;  
   grid-row-gap: 20px;
-  // list-style: none;
 }
 .todosList {
   display: flex;
